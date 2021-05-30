@@ -22,7 +22,7 @@ class Field {
         for (let i = 0; i < this.rows; i++) {
             queue=[]
             for( let j = 0 ; j< this.columns; j++){
-               queue[j] = '░';
+               queue[j] = fieldCharacter;
             }
             started[i]=queue;
         }
@@ -40,12 +40,17 @@ const rows= prompt('How many rows?')
 const columns =prompt('How many columns?')
 const myField = new Field(rows, columns);
 myField.generateField()
-  let k=0;
+  let k=0;          
   let x=0;
   let y=0;
+  let previousXPos=0;
+  let previousYPos=0;
 while(k!=1){
     myField.print()
+    previousXPos=x;
+    previousYPos=y;
     let direction= prompt('Which way?')
+    myField.field[previousYPos][previousXPos]=fieldCharacter;
     if(direction==='w'){y--}
     if(direction==='d'){x++}
     if(direction==='s'){y++}
